@@ -120,7 +120,7 @@ services:
   # https://supabase.com/docs/guides/getting-started/architecture#gotrue-auth
   auth:
     container_name: supabase-auth
-    image: supabase/gotrue:v2.186.0
+    image: registry.mipmap3d.com/docker/mapcatch/gotrue:v2.101.2
     restart: unless-stopped
     depends_on:
       analytics:
@@ -166,6 +166,10 @@ services:
       GOTRUE_MAILER_URLPATHS_EMAIL_CHANGE: ${MAILER_URLPATHS_EMAIL_CHANGE}
       GOTRUE_EXTERNAL_PHONE_ENABLED: ${ENABLE_PHONE_SIGNUP}
       GOTRUE_SMS_AUTOCONFIRM: ${ENABLE_PHONE_AUTOCONFIRM}
+      GOTRUE_SMS_OTP_LENGTH: 6
+      GOTRUE_SMS_PROVIDER: aliyun
+      GOTRUE_SMS_ALIYUN_API_KEY: ${SMS_ALIYUN_API_KEY}
+      GOTRUE_SMS_ALIYUN_API_SECRET: ${SMS_ALIYUN_API_SECRET}
       # Uncomment to enable custom access token hook.
       # See: https://supabase.com/docs/guides/auth/auth-hooks
       # GOTRUE_HOOK_CUSTOM_ACCESS_TOKEN_ENABLED: "true"
