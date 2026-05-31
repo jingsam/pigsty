@@ -177,13 +177,14 @@ services:
       # GOTRUE_HOOK_PASSWORD_VERIFICATION_ATTEMPT_ENABLED: "true"
       # GOTRUE_HOOK_PASSWORD_VERIFICATION_ATTEMPT_URI: "pg-functions://postgres/public/password_verification_attempt"
       GOTRUE_HOOK_SEND_SMS_ENABLED: "true"
-      GOTRUE_HOOK_SEND_SMS_URI: "http://172.17.0.1:8000/functions/v1/supabase-aliyun-sms-sender"
+      GOTRUE_HOOK_SEND_SMS_URI: "http://host.docker.internal:8000/functions/v1/supabase-aliyun-sms-sender"
       GOTRUE_HOOK_SEND_SMS_SECRETS: ${SEND_SMS_HOOK_SECRET}
       # GOTRUE_HOOK_SEND_EMAIL_ENABLED: "false"
       # GOTRUE_HOOK_SEND_EMAIL_URI: "http://host.docker.internal:54321/functions/v1/email_sender"
       # GOTRUE_HOOK_SEND_EMAIL_SECRETS: "v1,whsec_VGhpcyBpcyBhbiBleGFtcGxlIG9mIGEgc2hvcnRlciBCYXNlNjQgc3RyaW5n"
     extra_hosts:
       - "${POSTGRES_DOMAIN}:${POSTGRES_HOST}"
+      - "host.docker.internal:host-gateway"
 
   #--------------------------------------------------------------#
   # Rest: Turn PostgreSQL into a RESTful API using PostgREST
